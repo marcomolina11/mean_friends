@@ -12,9 +12,12 @@ app.controller('newController', ['$scope','friendsFactory', '$location', functio
   // index();
 
   $scope.create = function(){
-    friendsFactory.create($scope.newFriend);
-    $scope.newFriend = {};
-  }
+    friendsFactory.create($scope.newFriend, function(returnedData){
+      console.log("Data on controller: ", returnedData);
+      $scope.newFriend = {};
+      $location.url('/');
+    });
+  };
 /*
   OUR $scope.create function goes here <-- $scope because we need to access this method 
   with ng-submit or ng-click (from the form in the previous assignment).  
