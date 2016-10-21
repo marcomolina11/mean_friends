@@ -2,6 +2,9 @@ app.controller('editController', ['$scope','friendsFactory', '$routeParams', '$l
   $scope.friends = [];
   $scope.friend = {};
   friendsFactory.getFriend($routeParams.id, function(returnedData){
+    var date = new Date(returnedData.birthday);
+    date.toLocaleDateString('en-US');
+    returnedData.birthday = date;
     $scope.friend = returnedData;
   });
     $scope.update = function(){
